@@ -32,10 +32,10 @@ export const listOfCards = [
   { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.EIGHT, card_id: '8H', base_chips: 8, rank: '8', name: 'Eight of Hearts', image: 'card_hearts_08.png' },
   { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.NINE, card_id: '9H', base_chips: 9, rank: '9', name: 'Nine of Hearts', image: 'card_hearts_09.png' },
   { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.TEN, card_id: '10H', base_chips: 10, rank: '10', name: 'Ten of Hearts', image: 'card_hearts_10.png' },
-  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.JACK, card_id: 'JH', base_chips: 10, rank: 'j', name: 'Jack of Hearts', image: 'card_hearts_jack.png' },
-  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.QUEEN, card_id: 'QH', base_chips: 10, rank: 'q', name: 'Queen of Hearts', image: 'card_hearts_queen.png' },
-  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.KING, card_id: 'KH', base_chips: 10, rank: 'k', name: 'King of Hearts', image: 'card_hearts_king.png' },
-  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.ACE, card_id: 'AH', base_chips: 11, rank: 'a', name: 'Ace of Hearts', image: 'card_hearts_ace.png' },
+  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.JACK, card_id: 'JH', base_chips: 10, rank: 'j', name: 'Jack of Hearts', image: 'card_hearts_J.png' },
+  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.QUEEN, card_id: 'QH', base_chips: 10, rank: 'q', name: 'Queen of Hearts', image: 'card_hearts_Q.png' },
+  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.KING, card_id: 'KH', base_chips: 10, rank: 'k', name: 'King of Hearts', image: 'card_hearts_K.png' },
+  { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.ACE, card_id: 'AH', base_chips: 11, rank: 'a', name: 'Ace of Hearts', image: 'card_hearts_A.png' },
 
   // Diamonds
   { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.TWO, card_id: '2D', base_chips: 2, rank: '2', name: 'Two of Diamonds', image: 'card_diamonds_02.png' },
@@ -47,10 +47,10 @@ export const listOfCards = [
   { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.EIGHT, card_id: '8D', base_chips: 8, rank: '8', name: 'Eight of Diamonds', image: 'card_diamonds_08.png' },
   { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.NINE, card_id: '9D', base_chips: 9, rank: '9', name: 'Nine of Diamonds', image: 'card_diamonds_09.png' },
   { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.TEN, card_id: '10D', base_chips: 10, rank: '10', name: 'Ten of Diamonds', image: 'card_diamonds_10.png' },
-  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.JACK, card_id: 'JD', base_chips: 10, rank: 'j', name: 'Jack of Diamonds', image: 'card_diamonds_jack.png' },
-  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.QUEEN, card_id: 'QD', base_chips: 10, rank: 'q', name: 'Queen of Diamonds', image: 'card_diamonds_queen.png' },
-  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.KING, card_id: 'KD', base_chips: 10, rank: 'k', name: 'King of Diamonds', image: 'card_diamonds_king.png' },
-  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.ACE, card_id: 'AD', base_chips: 11, rank: 'a', name: 'Ace of Diamonds', image: 'card_diamonds_ace.png' },
+  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.JACK, card_id: 'JD', base_chips: 10, rank: 'j', name: 'Jack of Diamonds', image: 'card_diamonds_J.png' },
+  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.QUEEN, card_id: 'QD', base_chips: 10, rank: 'q', name: 'Queen of Diamonds', image: 'card_diamonds_Q.png' },
+  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.KING, card_id: 'KD', base_chips: 10, rank: 'k', name: 'King of Diamonds', image: 'card_diamonds_K.png' },
+  { suit: CARD_SUITS.DIAMONDS, value: CARD_VALUES.ACE, card_id: 'AD', base_chips: 11, rank: 'a', name: 'Ace of Diamonds', image: 'card_diamonds_A.png' },
 
   // Clubs
   { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.TWO, card_id: '2C', base_chips: 2, rank: '2', name: 'Two of Clubs', image: 'card_clubs_02.png' },
@@ -62,10 +62,10 @@ export const listOfCards = [
   { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.EIGHT, card_id: '8C', base_chips: 8, rank: '8', name: 'Eight of Clubs', image: 'card_clubs_08.png' },
   { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.NINE, card_id: '9C', base_chips: 9, rank: '9', name: 'Nine of Clubs', image: 'card_clubs_09.png' },
   { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.TEN, card_id: '10C', base_chips: 10, rank: '10', name: 'Ten of Clubs', image: 'card_clubs_10.png' },
-  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.JACK, card_id: 'JC', base_chips: 10, rank: 'j', name: 'Jack of Clubs', image: 'card_clubs_jack.png' },
-  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.QUEEN, card_id: 'QC', base_chips: 10, rank: 'q', name: 'Queen of Clubs', image: 'card_clubs_queen.png' },
-  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.KING, card_id: 'KC', base_chips: 10, rank: 'k', name: 'King of Clubs', image: 'card_clubs_king.png' },
-  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.ACE, card_id: 'AC', base_chips: 11, rank: 'a', name: 'Ace of Clubs', image: 'card_clubs_ace.png' },
+  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.JACK, card_id: 'JC', base_chips: 10, rank: 'j', name: 'Jack of Clubs', image: 'card_clubs_J.png' },
+  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.QUEEN, card_id: 'QC', base_chips: 10, rank: 'q', name: 'Queen of Clubs', image: 'card_clubs_Q.png' },
+  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.KING, card_id: 'KC', base_chips: 10, rank: 'k', name: 'King of Clubs', image: 'card_clubs_K.png' },
+  { suit: CARD_SUITS.CLUBS, value: CARD_VALUES.ACE, card_id: 'AC', base_chips: 11, rank: 'a', name: 'Ace of Clubs', image: 'card_clubs_A.png' },
 
   // Spades
   { suit: CARD_SUITS.SPADES, value: CARD_VALUES.TWO, card_id: '2S', base_chips: 2, rank: '2', name: 'Two of Spades', image: 'card_spades_02.png' },
@@ -77,10 +77,10 @@ export const listOfCards = [
   { suit: CARD_SUITS.SPADES, value: CARD_VALUES.EIGHT, card_id: '8S', base_chips: 8, rank: '8', name: 'Eight of Spades', image: 'card_spades_08.png' },
   { suit: CARD_SUITS.SPADES, value: CARD_VALUES.NINE, card_id: '9S', base_chips: 9, rank: '9', name: 'Nine of Spades', image: 'card_spades_09.png' },
   { suit: CARD_SUITS.SPADES, value: CARD_VALUES.TEN, card_id: '10S', base_chips: 10, rank: '10', name: 'Ten of Spades', image: 'card_spades_10.png' },
-  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.JACK, card_id: 'JS', base_chips: 10, rank: 'j', name: 'Jack of Spades', image: 'card_spades_jack.png' },
-  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.QUEEN, card_id: 'QS', base_chips: 10, rank: 'q', name: 'Queen of Spades', image: 'card_spades_queen.png' },
-  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.KING, card_id: 'KS', base_chips: 10, rank: 'k', name: 'King of Spades', image: 'card_spades_king.png' },
-  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.ACE, card_id: 'AS', base_chips: 11, rank: 'a', name: 'Ace of Spades', image: 'card_spades_ace.png' }
+  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.JACK, card_id: 'JS', base_chips: 10, rank: 'j', name: 'Jack of Spades', image: 'card_spades_J.png' },
+  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.QUEEN, card_id: 'QS', base_chips: 10, rank: 'q', name: 'Queen of Spades', image: 'card_spades_Q.png' },
+  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.KING, card_id: 'KS', base_chips: 10, rank: 'k', name: 'King of Spades', image: 'card_spades_K.png' },
+  { suit: CARD_SUITS.SPADES, value: CARD_VALUES.ACE, card_id: 'AS', base_chips: 11, rank: 'a', name: 'Ace of Spades', image: 'card_spades_A.png' }
 ]
 
 
