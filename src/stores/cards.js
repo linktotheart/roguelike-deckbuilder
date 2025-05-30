@@ -10,8 +10,6 @@ export const useStore = defineStore('cards', () => {
   const currentHand = ref([])
   const currentBet = ref(0)
 
-
-
   const addCard = (card) => {
     cards.value.push(card)
   }
@@ -20,15 +18,39 @@ export const useStore = defineStore('cards', () => {
     cards.value.splice(index, 1)
   }
 
+  const resetDeck = () => {
+    cards.value = [...listOfCards]
+  }
+
   const shuffleCards = () => {
     cards.value.sort(() => Math.random() - 0.5)
   }
 
+  const popCard = () => {
+    if (cards.value.length > 0) {
+      return cards.value.pop()
+    }
+    return null
+  }
+
+  const dealCards = (number = 5) => {
+    const dealtCards = []
+    for (let i = 0; i < number; i++) {
+      const card = popCard()
+      if (card) {
+        dealtCards.push(card)
+      }
+    }
+    currentHand.value = dealtCards
+    return dealtCards
+  }
+
   const getCards = computed(() => cards.value)
 
-  return { 
-    cards, addCard, removeCard, 
+  return {
+    cards, addCard, removeCard,
     getCards, shuffleCards,
-    currentHand, currentBet
-   }
+    currentHand, currentBet,
+    popCard, dealCards, resetDeck
+  }
 })

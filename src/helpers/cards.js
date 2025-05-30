@@ -21,6 +21,22 @@ export const CARD_VALUES = {
   ACE: 'Ace'
 }
 
+const SORT_ORDER = {
+  '2': 2,
+  '3': 3,
+  '4': 4,
+  '5': 5,
+  '6': 6,
+  '7': 7,
+  '8': 8,
+  '9': 9,
+  '10': 10,
+  'Jack': 11,
+  'Queen': 12,
+  'King': 13,
+  'Ace': 14
+};
+
 export const listOfCards = [
   // Hearts
   { suit: CARD_SUITS.HEARTS, value: CARD_VALUES.TWO, card_id: '2H', base_chips: 2, rank: '2', name: 'Two of Hearts', image: 'card_hearts_02.png' },
@@ -81,8 +97,10 @@ export const listOfCards = [
   { suit: CARD_SUITS.SPADES, value: CARD_VALUES.QUEEN, card_id: 'QS', base_chips: 10, rank: 'q', name: 'Queen of Spades', image: 'card_spades_Q.png' },
   { suit: CARD_SUITS.SPADES, value: CARD_VALUES.KING, card_id: 'KS', base_chips: 10, rank: 'k', name: 'King of Spades', image: 'card_spades_K.png' },
   { suit: CARD_SUITS.SPADES, value: CARD_VALUES.ACE, card_id: 'AS', base_chips: 11, rank: 'a', name: 'Ace of Spades', image: 'card_spades_A.png' }
-]
-
+].map(card => ({
+  ...card,
+  sort_order: SORT_ORDER[card.value]
+}))
 
 
 // WINNING CONDITIONS 

@@ -13,7 +13,7 @@
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 30px;
+  padding: 20px;
   border-radius: 30px;
   background-color: var(--color-background);
   flex: 1;

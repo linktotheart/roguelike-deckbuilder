@@ -1,11 +1,13 @@
 <template>
   <header class="app-header">
     <h1 class="app-title text-center">Zoker</h1>
+    <play-button text="Restart" @click="$emit('restart')"></play-button>
   </header>
 </template>
 
 <script setup>
-// No script logic needed for this simple header
+import PlayButton from './PlayButton.vue';
+defineEmits(['restart']);
 </script>
 
 <style scoped>
