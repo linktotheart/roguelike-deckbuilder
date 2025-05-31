@@ -1,129 +1,68 @@
 <template>
-	<article class="card-container" :class="{
-		'flipped': isFlipped,
-		'selected': isSelected,
-		'heart': props.card.suit === CARD_SUITS.HEARTS,
-		'spade': props.card.suit === CARD_SUITS.SPADES,
-		'diamond': props.card.suit === CARD_SUITS.DIAMONDS,
-		'club': props.card.suit === CARD_SUITS.CLUBS
-	}" @mousemove="handleEffect" @mouseleave="handleEffect" @click="$emit('select', props.card)">
-		<div class="card-front">
-			<img :src="getCardImage" alt="front Icon" class="front-img">
-		</div>
-		<div class="card-back">
-			<img :src="getCardBackImage" alt="back Icon" class="back-img">
-		</div>
-	</article>
+	<div class="tooltip">
+		<span class="tooltip-content px-4 text-xs font-pixel tracking-widest" v-if="props.card">
+			{{ props.card.name }}
+		</span>
+		<article class="card relative select-none w-20 h-32 transition-all ease-in-out filter origin-center 
+				rounded-sm duration-150 hover:shadow-lg shadow shadow-info-content drop-shadow-info transform scale-100" :class="{
+					flipped: isFlipped,
+					'z-[100] drop-shadow-lg bottom-4 scale-105 shadow': isSelected,
+					'heart hue-rotate-[320deg]': props.card.suit === CARD_SUITS.HEARTS,
+					'spade hue-rotate-60': props.card.suit === CARD_SUITS.SPADES,
+					'diamond hue-rotate-180': props.card.suit === CARD_SUITS.DIAMONDS,
+					club: props.card.suit === CARD_SUITS.CLUBS
+				}" @mousemove="handleEffect" @mouseleave="handleEffect" @click="$emit('select', props.card)">
+			<figure
+				class="card-face mx cursor-pointer absolute w-full h-full transition-transform duration-500 ease-in-out card-front z-20">
+				<img :src="getCardImage" alt="front Icon" class="w-full h-full object-cover" />
+			</figure>
+			<figure
+				class="card-face mx cursor-pointer absolute w-full h-full transition-transform duration-500 ease-in-out card-back">
+				<img :src="getCardBackImage" alt="back Icon" class="w-full h-full object-cover" />
+			</figure>
+		</article>
+	</div>
 </template>
 
 <script setup>
 import { CARD_SUITS } from '@/helpers/cards.js';
 
 const props = defineProps({
-	card: {
-		type: Object,
-		required: true
-	},
-	isFlipped: {
-		type: Boolean,
-		default: false
-	},
-	isSelected: {
-		type: Boolean,
-		default: false
-	}
+	card: Object,
+	isFlipped: Boolean,
+	isSelected: Boolean
 });
 
-// const isFlipped = ref(false);
-
-const getCardImage = `./images/${props.card.image}`.replace(/\\/g, '/'); // Ensure correct path format for images
+const getCardImage = `./images/${props.card.image}`.replace(/\\/g, '/');
 const getCardBackImage = './images/card_back.png';
 
-// const toggleFlip = () => {
-// 	isFlipped.value = !isFlipped.value;
-// };
-
 const handleEffect = (event) => {
-	let cardContainer = event.currentTarget;
-	if (!cardContainer) return;
+	const card = event.currentTarget;
+	if (!card) return;
 	const rotFactor = 30;
 	if (event.type === 'mousemove') {
-		let rect = cardContainer.getBoundingClientRect();
-		let rotateX = ((event.clientY - rect.top) / rect.height - 0.75) * rotFactor;
-		let rotateY = ((event.clientX - rect.left) / rect.width - 0.5) * rotFactor;
-		cardContainer.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
+		const rect = card.getBoundingClientRect();
+		const rotateX = ((event.clientY - rect.top) / rect.height - 0.75) * rotFactor;
+		const rotateY = ((event.clientX - rect.left) / rect.width - 0.5) * rotFactor;
+		card.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 	} else if (event.type === 'mouseleave') {
-		cardContainer.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+		card.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
 	}
 };
-
 </script>
 
 <style scoped>
-.card-container {
-	width: 120px;
-	height: 150px;
-	opacity: 1;
-	position: relative;
-	perspective: 2000px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	transition: all 0.15s ease;
-	transform: scale(1) rotateX('15deg') rotateY('15deg');
+.card {
+	perspective: 1000px;
 }
 
-.card-container:hover {
-	cursor: pointer;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-	transform: scale(1.05);
-}
-
-.card-container.selected {
-	box-shadow: 0 4px 16px var(--color-primary, #007bff);
-	bottom: 20px;
-	z-index: 100;
-}
-
-.diamond {
-	filter: hue-rotate(300deg);
-}
-
-.spade {
-	filter: sepia(0.45) hue-rotate(90deg);
-}
-
-.heart {
-	filter: hue-rotate(330deg);
-}
-
-
-
-.card-container.flipped .card-front {
-	transform: rotateY(180deg);
-}
-
-.card-container.flipped .card-back {
-	transform: rotateY(0deg);
-}
-
-.flipped {
-	filter: none !important;
-}
-
-.card-front,
-.card-back {
-	width: 100%;
-	height: 100%;
+.card-face {
 	position: absolute;
 	backface-visibility: hidden;
-	aspect-ratio: 2 / 3;
-	transition: transform 0.6s;
-	/* pixel art  */
 	image-rendering: pixelated;
 }
 
 .card-front {
-	z-index: 2;
 	transform: rotateY(0deg);
 }
 
@@ -131,17 +70,11 @@ const handleEffect = (event) => {
 	transform: rotateY(180deg);
 }
 
-.front-img,
-.back-img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+.flipped .card-front {
+	transform: rotateY(180deg);
 }
 
-.card-front img,
-.card-back img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+.flipped .card-back {
+	transform: rotateY(0deg);
 }
 </style>

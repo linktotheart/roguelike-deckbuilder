@@ -1,7 +1,7 @@
 <template>
-  <header class="app-header">
-    <h1 class="app-title text-center">Zoker</h1>
-    <play-button text="Restart" @click="$emit('restart')"></play-button>
+  <header class="app-header relative flex py-4 px-10 items-center bg-base-300 shadow-lg rounded-b-4xl">
+    <h1 class="flex-grow-1 text-lg text-center">Zoker</h1><play-button class="absolute right-4 btn btn-secondary"
+      text="@" @click="$emit('restart')"></play-button>
   </header>
 </template>
 
@@ -10,22 +10,4 @@ import PlayButton from './PlayButton.vue';
 defineEmits(['restart']);
 </script>
 
-<style scoped>
-.app-header {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  background: var(--color-background, #222);
-  color: var(--color-on-background, #fff);
-  border-bottom: 5px solid var(--color-border, #444);
-  border-top: 5px solid var(--color-border, #444);
-  box-shadow: 0 2px px rgba(0, 0, 0, 0.08);
-}
-
-.app-title {
-  font-size: 20px;
-  text-align: center;
-  flex: 1;
-  font-family: var(--font-pixel);
-}
-</style>
+<style scoped></style>

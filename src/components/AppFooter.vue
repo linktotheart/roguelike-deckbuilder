@@ -1,5 +1,6 @@
 <template>
-	<footer class="app-footer">
+	<footer
+		class="app-footer flex justify-center gap-4 items-center bg-base-300 shadow-lg rounded-4xl p-4 rounded-b-none">
 		<slot />
 	</footer>
 </template>
@@ -12,18 +13,4 @@ defineProps({
 	}
 })
 </script>
-<style scoped>
-.app-footer {
-	display: flex;
-	width: 90dvw;
-	justify-content: center;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
-	margin: 20px auto 0;
-	align-items: center;
-	background-color: var(--color-background-alt, #f8f9fa);
-	padding: 1rem;
-	border-top: 5px solid var(--color-border);
-	color: #6c757d;
-}
-</style>
+<style scoped></style>

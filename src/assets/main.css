@@ -1,13 +1,19 @@
-@import url('./base.css');
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: dracula --default, dracula --prefersdark, dracula;
+}
+
 
 .background {
-  background-color: var(--color-background-alt);
+  font-family: 'Press Start 2P', system-ui;
+  background-color: var(--color-base-100);
   opacity: 0.7;
   background-image:
-    linear-gradient(135deg, var(--color-background-alt) 25%, transparent 25%),
-    linear-gradient(225deg, var(--color-background-alt) 25%, transparent 25%),
-    linear-gradient(45deg, var(--color-background-alt) 25%, transparent 25%),
-    linear-gradient(315deg, var(--color-background-alt) 25%, var(--color-background) 25%);
+    linear-gradient(135deg, var(--color-base-100) 25%, transparent 25%),
+    linear-gradient(225deg, var(--color-base-100) 25%, transparent 25%),
+    linear-gradient(45deg, var(--color-base-100) 25%, transparent 25%),
+    linear-gradient(315deg, var(--color-base-100) 25%, var(--color-base-300) 25%);
   background-position:
     40px 0,
     40px 0,

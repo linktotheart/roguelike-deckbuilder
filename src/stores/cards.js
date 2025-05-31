@@ -14,8 +14,14 @@ export const useStore = defineStore('cards', () => {
     cards.value.push(card)
   }
 
-  const removeCard = (index) => {
-    cards.value.splice(index, 1)
+  const removeCard = (cardId) => {
+    const index = cards.value.findIndex(c => c.id === cardId)
+    if (index !== -1) {
+      cards.value.splice(index, 1)
+    }
+    else {
+      console.warn(`Card with id ${cardId} not found in deck.`)
+    }
   }
 
   const resetDeck = () => {

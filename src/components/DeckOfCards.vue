@@ -1,47 +1,38 @@
 <template>
-	<section class="deck-of-cards">
-		<!-- <play-card v-for="card in listOfCards" :isFlipped="true" :card="card" :key="card.id"></play-card> -->
-		<span class="card-details">
-			{{ listOfCards.length }} / {{ 52 }}
-		</span>
-	</section>
+	<div class="stack w-24 h-24 shadow">
+		<div class="border-base-content card bg-base-100 border text-center">
+			<div class="card-body text-center text-base-content px-0 text-sm">
+				<div class="flex justify-center gap-1">
+					<span class="countdown text-md items-center justify-center">
+						<span :style="`--value: ${listOfCards.length};`" aria-live="polite"
+							:aria-label="listOfCards.length">
+							{{ listOfCards.length }}
+						</span>
+					</span>
+					<small>/52</small>
+				</div>
+				<small>Cards</small>
+			</div>
+		</div>
+		<div class="border-base-content card bg-base-200 border text-center">
+			<div class="card-body">B</div>
+		</div>
+		<div class="border-base-content card bg-base-100 border text-center">
+			<div class="card-body">C</div>
+		</div>
+	</div>
 </template>
 <script setup>
-import PlayCard from './PlayCard.vue'
 import { useStore } from '@/stores/cards';
+import { storeToRefs } from 'pinia';
 import { ref, onMounted } from 'vue';
 
 const store = useStore();
-const listOfCards = ref([]);
+const listOfCards = storeToRefs(store).cards;
 
-const fetchCards = () => {
-	listOfCards.value = store.getCards;
-};
+// const fetchCards = () => listOfCards.value = store.getCards;
 onMounted(() => {
-	fetchCards();
+	// fetchCards();
 });
 </script>
-<style scoped>
-.deck-of-cards {
-	display: grid;
-	justify-content: center;
-	position: relative;
-}
-
-.card-container {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-.card-details {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-	font-size: 1.2rem;
-	font-family: var(--font-pixel);
-	color: var(--color-secondary, #6c757d);
-}
-</style>
+<style scoped></style>
