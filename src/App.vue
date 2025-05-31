@@ -4,7 +4,7 @@
   <AppGrid class="deck-of-cards flex flex-col items-center relative mt-8">
     <player-info></player-info>
     <TransitionGroup name="list" tag="div" class="justify-center w-full gap-2 items-center flex" mode="in-out">
-      <div class="fan" v-for="c, i in playerDeck" :key="c.value + c.suit + i + c.card_id">
+      <div class="fan" v-for="c, i in playerDeck" :key="i + c.card_id">
         <PlayCard :card="c" :key="c.value + c.suit" :is-selected="checkIfSelected(c)" @select="addCardToHand" />
       </div>
     </TransitionGroup>
@@ -44,6 +44,7 @@ const playerDeck = ref([])
 const playerHand = ref([])
 const showModal = ref(false)
 const isSortedBySuit = ref(false)
+const updateKey = ref(+new Date())
 
 const store = useStore()
 store.resetDeck()
@@ -99,8 +100,7 @@ const discardHand = async () => {
   await waitFor(300)
   playerHand.value = []
   for (let i = 0; i < numberOfCardsToDiscard; i++) {
-    await waitFor(200)
-    // playerDeck.value = sortCardsInDeck(true)
+    await waitFor(100)
     playerDeck.value = [...playerDeck.value, ...store.dealCards(1)]
   }
 }
@@ -123,8 +123,9 @@ const sortCardsInDeck = ((chagedOrder = false) => {
   if (chagedOrder) {
     isSortedBySuit.value = !isSortedBySuit.value;
   }
-
+  updateKey.value += 1
   return sorted;
+
 })
 
 startGame()
@@ -147,7 +148,7 @@ startGame()
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: scaleX(0.75) translateY(200px);
+  transform: translateX(100px);
 }
 
 .list-move {

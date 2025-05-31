@@ -1,5 +1,5 @@
 <template>
-	<dialog v-if="isOpen" :id="modalId" class="modal" ref="myModal">
+	<dialog :id="modalId" class="modal" ref="myModal">
 		<div class="modal-box">
 			<h3 class="text-lg font-bold" v-if="title !== ''">{{ title }}</h3>
 			<p class="py-4">
