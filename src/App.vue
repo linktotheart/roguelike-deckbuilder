@@ -13,16 +13,18 @@
   <app-footer>
     <DeckOfCards />
     <div class="ml-auto flex gap-2 items-center">
-      <PlayButton text="> Hand" class="btn-primary btn-lg" @click="startGame" />
-      <PlayButton text="Sort" class="btn-soft btn-secondary btn-sm" @click="sortCardsInDeck(true)" />
-      <PlayButton text="Discard" class="btn-warning btn-lg" @click="discardHand" />
+      <PlayButton text="> Hand" class="btn-primary btn-lg" :disabled="isDiscarding" @click="startGame" />
+      <PlayButton text="Sort" class="btn-soft btn-secondary btn-sm" @click="sortCardsInDeck(true)"
+        :disabled="isDiscarding" />
+      <PlayButton text="Discard" class="btn-warning btn-lg" @click="discardHand" :disabled="isDiscarding" />
     </div>
     <!-- <PlayButton text="Start Game" @click="startGame"></PlayButton> -->
     <DeckOfCards class="ml-auto" />
   </app-footer>
 
-  <warn-modal :is-open="isOpen" :title="'You have no Cards to Discard'" @close="closeModal">
-    Helper</warn-modal>
+  <warn-modal v-if="showModal" :is-open="showModal" @close="closeModal">
+    'You have no Cards to Discard'
+  </warn-modal>
 
 </template>
 
@@ -44,7 +46,7 @@ const playerDeck = ref([])
 const playerHand = ref([])
 const showModal = ref(false)
 const isSortedBySuit = ref(false)
-const updateKey = ref(+new Date())
+const isDiscarding = ref(false)
 
 const store = useStore()
 store.resetDeck()
@@ -84,6 +86,7 @@ const restartGame = () => {
 const waitFor = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const discardHand = async () => {
+  isDiscarding.value = true
   if (playerHand.value.length === 0) {
     showModal.value = true
     return
@@ -103,6 +106,7 @@ const discardHand = async () => {
     await waitFor(100)
     playerDeck.value = [...playerDeck.value, ...store.dealCards(1)]
   }
+  isDiscarding.value = false
 }
 
 const sortCardsInDeck = ((chagedOrder = false) => {
@@ -123,10 +127,13 @@ const sortCardsInDeck = ((chagedOrder = false) => {
   if (chagedOrder) {
     isSortedBySuit.value = !isSortedBySuit.value;
   }
-  updateKey.value += 1
   return sorted;
 
 })
+
+const closeModal = () => {
+  showModal.value = false
+}
 
 startGame()
 
@@ -148,7 +155,7 @@ startGame()
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(100px);
+  transform: translateX(20px);
 }
 
 .list-move {

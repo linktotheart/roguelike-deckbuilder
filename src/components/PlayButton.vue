@@ -1,5 +1,5 @@
 <template>
-	<button class="btn" @click="$emit('click')">
+	<button class="btn" @click="$emit('click')" :disabled="disabled">
 		<slot>
 			<span class="uppercase font-pixel tracking-widest">
 				{{ text }}
@@ -12,7 +12,11 @@ defineProps({
 	text: {
 		type: String,
 		default: 'Play'
-	}
+	},
+	disabled: {
+		type: Boolean,
+		default: false
+	},
 });
 defineEmits(['click']);
 </script>

@@ -1,13 +1,13 @@
 <template>
 	<dialog :id="modalId" class="modal" ref="myModal">
 		<div class="modal-box">
-			<h3 class="text-lg font-bold" v-if="title !== ''">{{ title }}</h3>
-			<p class="py-4">
+			<h3 class="text-lg font-bold text-center" v-if="title && title !== ''">{{ title }}</h3>
+			<p class="py-4 text-center">
 				<slot>
 					Are you sure you want to proceed? This action cannot be undone.
 				</slot>
 			</p>
-			<div class="modal-action">
+			<div class="modal-action justify-center">
 				<form method="dialog">
 					<button class="btn" @click="closeModal">Close</button>
 				</form>
@@ -20,7 +20,7 @@ import { defineProps, defineEmits, onMounted, ref } from 'vue';
 const props = defineProps({
 	title: {
 		type: String,
-		default: 'Warning'
+		default: ''
 	},
 	modalId: {
 		type: String,
