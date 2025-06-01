@@ -66,8 +66,8 @@ export const usePlayerStore = defineStore('player', () => {
 		};
 
 		// Check for regular straight
-		const isStraight = rankValues.length === 4 &&
-			isSequential(rankValues) ||
+		const isStraight = (rankValues.length === 5 &&
+			isSequential(rankValues)) ||
 			(rankValues.includes(14) && isSequential([1, ...rankValues.slice(0, 4)]));
 
 		const isFlush = Object.values(suitCount).some(count => count === 5);
