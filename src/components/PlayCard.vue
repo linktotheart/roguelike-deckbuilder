@@ -1,12 +1,12 @@
 <template>
-	<div class="tooltip">
+	<div class="tooltip ">
 		<span class="tooltip-content px-4 text-xs font-pixel tracking-widest" v-if="props.card">
 			{{ props.card.name }}
 		</span>
-		<article class="card relative select-none w-20 h-32 transition-all ease-in-out filter origin-center 
+		<article class="card relative select-none w-20 h-34 transition-all ease-in-out filter origin-center 
 				rounded-sm duration-150 hover:shadow-lg shadow shadow-info-content drop-shadow-info transform scale-100" :class="{
 					flipped: isFlipped,
-					'z-[100] drop-shadow-lg bottom-4 scale-105 shadow': isSelected,
+					'z-[100] drop-shadow-lg bottom-2 scale-105 shadow': isSelected,
 					'heart hue-rotate-[320deg]': props.card.suit === CARD_SUITS.HEARTS,
 					'spade hue-rotate-60': props.card.suit === CARD_SUITS.SPADES,
 					'diamond hue-rotate-180': props.card.suit === CARD_SUITS.DIAMONDS,

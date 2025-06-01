@@ -1,5 +1,5 @@
 <template>
-  <main class="main-container p-8 bg-base-200/50">
+  <main class="main-container p-6">
     <slot />
   </main>
 </template>

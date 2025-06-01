@@ -2,8 +2,8 @@
   <AppHeader @restart="restartGame" />
 
   <AppGrid class="deck-of-cards flex flex-col items-center relative mt-8">
-    <player-info></player-info>
-    <TransitionGroup name="list" tag="div" class="justify-center w-full gap-2 items-center flex" mode="in-out">
+    <PlayerInfo :selected-cards="playerHand" @show-help="showHelpModal = true" />
+    <TransitionGroup name=" list" tag="div" class="justify-center w-full gap-2 items-center flex" mode="in-out">
       <div class="fan" v-for="c, i in playerDeck" :key="i + c.card_id">
         <PlayCard :card="c" :key="c.value + c.suit" :is-selected="checkIfSelected(c)" @select="addCardToHand" />
       </div>
@@ -16,14 +16,21 @@
       <PlayButton text="> Hand" class="btn-primary btn-lg" :disabled="isDiscarding" @click="startGame" />
       <PlayButton text="Sort" class="btn-soft btn-secondary btn-sm" @click="sortCardsInDeck(true)"
         :disabled="isDiscarding" />
-      <PlayButton text="Discard" class="btn-warning btn-lg" @click="discardHand" :disabled="isDiscarding" />
+      <PlayButton text="Discard" class="btn-accent btn-lg" @click="discardHand" :disabled="isDiscarding" />
     </div>
     <!-- <PlayButton text="Start Game" @click="startGame"></PlayButton> -->
     <DeckOfCards class="ml-auto" />
   </app-footer>
 
-  <warn-modal v-if="showModal" :is-open="showModal" @close="closeModal">
-    'You have no Cards to Discard'
+  <warn-modal v-if="showWarningModal" :is-open="showWarningModal" @close="closeModal">
+    <div class="text-secondary mt-4">
+      {{ warningtext }}
+    </div>
+  </warn-modal>
+
+  <warn-modal v-if="showHelpModal" modal-id="show-help-modal" title="Poker Hands" :is-open="showHelpModal"
+    @close="closeModal">
+    <winning-hands />
   </warn-modal>
 
 </template>
@@ -34,21 +41,26 @@ import AppHeader from './components/AppHeader.vue'
 import PlayCard from './components/PlayCard.vue'
 import { ref } from 'vue'
 import { useStore } from './stores/cards.js'
+import { usePlayerStore } from './stores/player'
 import AppFooter from './components/AppFooter.vue'
 import PlayButton from './components/PlayButton.vue'
 import PlayerInfo from './components/PlayerInfo.vue'
 import DeckOfCards from './components/DeckOfCards.vue'
 import WarnModal from './components/WarnModal.vue'
+import WinningHands from './components/WinningHands.vue'
 
-// const cards = ref([])
+// STATES
 const deckOfCards = ref([])
 const playerDeck = ref([])
 const playerHand = ref([])
-const showModal = ref(false)
+const showWarningModal = ref(false)
+const showHelpModal = ref(false)
 const isSortedBySuit = ref(false)
 const isDiscarding = ref(false)
+const warningtext = ref('')
 
 const store = useStore()
+const playerStore = usePlayerStore()
 store.resetDeck()
 store.shuffleCards()
 deckOfCards.value = store.getCards
@@ -62,14 +74,17 @@ const startGame = () => {
 const addCardToHand = (card) => {
   if (!playerHand.value.includes(card)) {
     if (playerHand.value.length >= 5) {
-      showModal.value = true
+      showWarningModal.value = true
+      warningtext.value = 'You can only hold 5 cards in your hand at a time.'
       return
     }
     playerHand.value.push(card)
   } else {
     playerHand.value = playerHand.value.filter(c => c !== card)
   }
+  playerStore.setPlayerCards(playerHand.value)
 }
+
 const checkIfSelected = (card) => {
   return playerHand.value.includes(card)
 }
@@ -86,11 +101,12 @@ const restartGame = () => {
 const waitFor = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const discardHand = async () => {
-  isDiscarding.value = true
   if (playerHand.value.length === 0) {
-    showModal.value = true
+    showWarningModal.value = true
+    warningtext.value = 'You have no cards in your hand to discard.'
     return
   }
+  isDiscarding.value = true
   const numberOfCardsToDiscard = playerHand.value.length
   for (let i = 0; i < playerHand.value.length; i++) {
     const card = playerHand.value[i]
@@ -132,7 +148,10 @@ const sortCardsInDeck = ((chagedOrder = false) => {
 })
 
 const closeModal = () => {
-  showModal.value = false
+  showWarningModal.value = false
+  warningtext.value = ''
+  isDiscarding.value = false
+  showHelpModal.value = false
 }
 
 startGame()
@@ -147,8 +166,7 @@ startGame()
 
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-  transform-origin: center;
+  transition: all 0.3s ease-in-out;
   position: relative;
 }
 
@@ -164,6 +182,6 @@ startGame()
 
 .list-leave-active {
   position: absolute;
-  bottom: 50%;
+  z-index: 22;
 }
 </style>

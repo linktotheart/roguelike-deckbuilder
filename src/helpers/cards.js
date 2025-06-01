@@ -108,6 +108,7 @@ export const WINNING_CONDITIONS = {
   ROYAL_FLUSH: {
     name: 'Royal Flush',
     description: 'A, K, Q, J, 10 of the same suit',
+    example: 'A♠️, K♠️, Q♠️, J♠️, 10♠️',
     mult: 8,
     rank: 10,
     level: 1
@@ -115,6 +116,7 @@ export const WINNING_CONDITIONS = {
   STRAIGHT_FLUSH: {
     name: 'Straight Flush',
     description: 'Five consecutive cards of the same suit',
+    example: '9♥️, 8♥️, 7♥️, 6♥️, 5♥️',
     mult: 8,
     rank: 10,
     level: 1
@@ -122,6 +124,7 @@ export const WINNING_CONDITIONS = {
   FOUR_OF_A_KIND: {
     name: 'Four of a Kind',
     description: 'Four cards of the same rank',
+    example: 'Q♠️, Q♥️, Q♦️, Q♣️, 5♠️',
     mult: 7,
     rank: 60,
     level: 1
@@ -129,6 +132,7 @@ export const WINNING_CONDITIONS = {
   FULL_HOUSE: {
     name: 'Full House',
     description: 'Three of a kind and a pair',
+    example: 'J♣️, J♦️, J♥️, 8♠️, 8♦️',
     mult: 4,
     rank: 40,
     level: 1
@@ -136,6 +140,7 @@ export const WINNING_CONDITIONS = {
   FLUSH: {
     name: 'Flush',
     description: 'Five cards of the same suit',
+    example: '2♦️, 6♦️, 9♦️, J♦️, K♦️',
     mult: 4,
     rank: 35,
     level: 1
@@ -143,6 +148,7 @@ export const WINNING_CONDITIONS = {
   STRAIGHT: {
     name: 'Straight',
     description: 'Five consecutive cards of different suits',
+    example: '6♣️, 7♦️, 8♠️, 9♥️, 10♣️',
     mult: 4,
     rank: 30,
     level: 1
@@ -150,6 +156,7 @@ export const WINNING_CONDITIONS = {
   THREE_OF_A_KIND: {
     name: 'Three of a Kind',
     description: 'Three cards of the same rank',
+    example: '5♠️, 5♥️, 5♦️, J♣️, 9♣️',
     mult: 3,
     rank: 30,
     level: 1
@@ -157,6 +164,7 @@ export const WINNING_CONDITIONS = {
   TWO_PAIR: {
     name: 'Two Pair',
     description: 'Two pairs of different ranks',
+    example: '10♣️, 10♦️, 6♠️, 6♥️, 3♠️',
     mult: 2,
     rank: 20,
     level: 1
@@ -164,6 +172,7 @@ export const WINNING_CONDITIONS = {
   ONE_PAIR: {
     name: 'One Pair',
     description: 'Two cards of the same rank',
+    example: '7♠️, 7♥️, K♦️, 4♣️, 2♠️',
     mult: 2,
     rank: 10,
     level: 1
@@ -171,8 +180,10 @@ export const WINNING_CONDITIONS = {
   HIGH_CARD: {
     name: 'High Card',
     description: 'The highest card in the hand',
+    example: 'A♦️, 9♠️, 7♥️, 5♣️, 2♦️',
     mult: 1,
     rank: 5,
     level: 1
   }
+
 }

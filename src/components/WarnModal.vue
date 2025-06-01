@@ -1,15 +1,15 @@
 <template>
 	<dialog :id="modalId" class="modal" ref="myModal">
-		<div class="modal-box">
-			<h3 class="text-lg font-bold text-center" v-if="title && title !== ''">{{ title }}</h3>
+		<div class="modal-box max-w-2xl">
+			<h3 class="text-xl font-bold text-center" v-if="title && title !== ''">{{ title }}</h3>
 			<p class="py-4 text-center">
 				<slot>
 					Are you sure you want to proceed? This action cannot be undone.
 				</slot>
 			</p>
-			<div class="modal-action justify-center">
-				<form method="dialog">
-					<button class="btn" @click="closeModal">Close</button>
+			<div class="modal-action  w-full justify-center">
+				<form method="dialog" class="flex w-full">
+					<button class="btn btn-wide btn-soft mx-auto btn-warning" @click="closeModal">Close</button>
 				</form>
 			</div>
 		</div>
@@ -44,7 +44,6 @@ const closeModal = () => {
 };
 onMounted(() => {
 	const modal = document.getElementById(props.modalId);
-	console.log(myModal.value)
 	if (modal) {
 		if (props.isOpen) {
 			modal.showModal();
